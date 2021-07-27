@@ -18,7 +18,7 @@ export class HomePage {
   }
   download()
   {
-      var downloadurl="http://ipv4.download.thinkbroadband.com/100MB.zip";
+      var downloadurl="https://drive.google.com/uc?export=download&id=1F0ZXcSVJItKIf4ZD_gZRsDN61FB20ixO";
       var request:DownloadRequest={
         uri:downloadurl,
         title:"Mydownload",
