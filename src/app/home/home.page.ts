@@ -18,7 +18,7 @@ export class HomePage {
   }
   download()
   {
-      var downloadurl="https://drive.google.com/uc?export=download&id=1F0ZXcSVJItKIf4ZD_gZRsDN61FB20ixO";
+      var downloadurl="https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/sample.zip?alt=media&token=0c9ce1d0-b35d-4d03-901f-da4f79ca4529";
       var request:DownloadRequest={
         uri:downloadurl,
         title:"Mydownload",
