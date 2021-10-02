@@ -1,13 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Downloader Prototype
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<ion-button (click)="download()">
-  Download
-</ion-button>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Downloader Prototype</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-button (click)="Download3()">Download 10 MB</ion-button>
+  <br>
+  <br>
+  <ion-button (click)="AccessDB()">TEST DB</ion-button>
+  <ion-button (click)="DeleteDB()">DEL DB</ion-button>
+  <ion-button (click)="DropDB()">Drop DB</ion-button>
+
+  <br>
+  <ion-button (click)="CrashTest()">Main Test (1GB)</ion-button>
 </ion-content>
