@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ɵgetDebugNodeR2 } from '@angular/core';
 import { Downloader,DownloadRequest,NotificationVisibility } from '@ionic-native/downloader/ngx';
 import { Zip } from '@ionic-native/zip/ngx';
 import {File} from '@ionic-native/file/ngx';
@@ -107,6 +107,11 @@ export class HomePage {
   lastDequeuedIndex = 0;
   dequeued="";
   location_list=[];
+  i1=0;
+  i2=1; 
+  i3=2;
+  i4=3;
+  i5=4;
 
 size(){
     return this.nextEnqueueIndex - this.lastDequeuedIndex;
@@ -155,7 +160,8 @@ dequeue(){
       this.loc=location;
       //added enqueue funtion
       this.enqueue(this.loc);
-      this.zip.unzip(this.loc,this.file.externalApplicationStorageDirectory+'Extracted/'+ind.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
+      
+   /*   this.zip.unzip(this.loc,this.file.externalApplicationStorageDirectory+'Extracted/'+ind.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
     .then(async (result) => {
       if(result === 0){
         console.log('SUCCESS');
@@ -167,14 +173,44 @@ dequeue(){
       if(result === -1) console.log('FAILED');
 
     });
-    
+    */
     },(err)=>{
       alert(JSON.stringify(err));
     })
   }
 
   CrashTest(){
-    this.DownloadFileAt(this.index);
+    this.i1=0;
+    this.i2=1; 
+    this.i3=2;
+    this.i4=3;
+    this.i5=4;
+    while(1){
+      if(this.i1<this.size())
+      this.DownloadFileAt(this.i1);
+      else
+      break;
+      if(this.i2<this.size())
+      this.DownloadFileAt(this.i2);
+      else
+      break;
+      if(this.i3<this.size())
+      this.DownloadFileAt(this.i3);
+      else
+      break;
+      if(this.i4<this.size())
+      this.DownloadFileAt(this.i4);
+      else
+      break;
+      if(this.i5<this.size())
+      this.DownloadFileAt(this.i5);
+      else
+      break;
+      
+      this.i1+=5; this.i2+=5; this.i3+=5; this.i4+=5; this.i5+=5;
+  
+    }
+        
   }
 
 }
