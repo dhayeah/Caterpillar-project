@@ -186,27 +186,27 @@ dequeue(){
     this.i4=3;
     this.i5=4;
     while(1){
-      if(this.i1<this.size())
+      if(this.i1<this.list.length)
       this.DownloadFileAt(this.i1);
       else
       break;
-      if(this.i2<this.size())
+      if(this.i2<this.list.length)
       this.DownloadFileAt(this.i2);
       else
       break;
-      if(this.i3<this.size())
+      if(this.i3<this.list.length)
       this.DownloadFileAt(this.i3);
       else
       break;
-      if(this.i4<this.size())
+      if(this.i4<this.list.length)
       this.DownloadFileAt(this.i4);
       else
       break;
-      if(this.i5<this.size())
+      if(this.i5<this.list.length)
       this.DownloadFileAt(this.i5);
       else
       break;
-      
+
       this.i1+=5; this.i2+=5; this.i3+=5; this.i4+=5; this.i5+=5;
   
     }
