@@ -5,6 +5,8 @@ import {File} from '@ionic-native/file/ngx';
 import { Filesystem } from '@capacitor/filesystem';
 import { range } from 'rxjs';
 import {SQLite,SQLiteObject} from '@ionic-native/sqlite/ngx'
+import { Extractor } from '@angular/compiler';
+import { StringDecoder } from 'string_decoder';
 
 @Component({
   selector: 'app-home',
@@ -112,7 +114,7 @@ export class HomePage {
   i3=2;
   i4=3;
   i5=4;
-
+  filelocation="";
 size(){
     return this.nextEnqueueIndex - this.lastDequeuedIndex;
   }
@@ -148,9 +150,32 @@ dequeue(){
     'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
     'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5']
 
+  indi=0;
+  ExtractRead(){
+   
+    while(this.size()==0);
+
+      this.filelocation=this.dequeue();
+      
+        this.zip.unzip(this.filelocation,this.file.externalApplicationStorageDirectory+'Extracted/'+this.indi.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
+        .then(async (result) => {
+          if(result === 0){
+            console.log('SUCCESS');
+            this.loc="Success";
+            await this.readDir(this.file.externalApplicationStorageDirectory+'Extracted/',this.indi.toString());
+            this.indi++;  
+            console.log("Extracted and inserted"+this.indi); 
+          } 
+          if(result === -1) console.log('FAILED');
+    
+        });
+       
+      this.ExtractRead();
+      
+  } 
   index=0;
   DownloadFileAt(ind){
-    if(ind>=5) return;
+    if(ind>=10) return;
     var request: DownloadRequest = {
       uri: this.list[ind],
       title: 'CrashTest'+ind.toString(),
@@ -164,11 +189,17 @@ dequeue(){
         }
     };
 
+
+
     this.downloader.download(request).then((location:string)=>{
       this.loc=location;
       //added enqueue funtion
       this.enqueue(this.loc);
-      
+      console.log(this.location_list);
+      this.index++;
+      this.DownloadFileAt(this.index);
+   
+
    /*   this.zip.unzip(this.loc,this.file.externalApplicationStorageDirectory+'Extracted/'+ind.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
     .then(async (result) => {
       if(result === 0){
@@ -188,7 +219,7 @@ dequeue(){
   }
 
   CrashTest(){
-    this.i1=0;
+ /*   this.i1=0;
     this.i2=1; 
     this.i3=2;
     this.i4=3;
@@ -210,15 +241,18 @@ dequeue(){
       this.DownloadFileAt(this.i4);
       else
       break;
-      if(this.i5<this.list.length)
-      this.DownloadFileAt(this.i5);
+      if(this.i5<this.list.length )
+      {
+        await this.DownloadFileAt(this.i5);
+        this.i1+=5; this.i2+=5; this.i3+=5; this.i4+=5; this.i5+=5;
+      }
       else
       break;
 
-      this.i1+=5; this.i2+=5; this.i3+=5; this.i4+=5; this.i5+=5;
-  
     }
-        
+       */ 
+    this.DownloadFileAt(this.index);
+    this.ExtractRead(); 
   }
 
 }
