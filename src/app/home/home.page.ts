@@ -114,6 +114,7 @@ export class HomePage {
   i3=2;
   i4=3;
   i5=4;
+  f=0;
   filelocation="";
 size(){
     return this.nextEnqueueIndex - this.lastDequeuedIndex;
@@ -151,11 +152,12 @@ dequeue(){
     'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5']
 
   indi=0;
-  ExtractRead(){
+  async ExtractRead(){
    
     while(this.size()==0);
 
       this.filelocation=this.dequeue();
+      console.log(this.filelocation);
       
         this.zip.unzip(this.filelocation,this.file.externalApplicationStorageDirectory+'Extracted/'+this.indi.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
         .then(async (result) => {
@@ -165,17 +167,16 @@ dequeue(){
             await this.readDir(this.file.externalApplicationStorageDirectory+'Extracted/',this.indi.toString());
             this.indi++;  
             console.log("Extracted and inserted"+this.indi); 
+            this.ExtractRead();
           } 
           if(result === -1) console.log('FAILED');
     
-        });
-       
-      this.ExtractRead();
+        }); 
       
   } 
   index=0;
   DownloadFileAt(ind){
-    if(ind>=10) return;
+
     var request: DownloadRequest = {
       uri: this.list[ind],
       title: 'CrashTest'+ind.toString(),
@@ -190,15 +191,15 @@ dequeue(){
     };
 
 
-
+    this.enqueue('MyZip'+ind.toString()+'.zip');
     this.downloader.download(request).then((location:string)=>{
       this.loc=location;
+      console.log(this.loc);
       //added enqueue funtion
-      this.enqueue(this.loc);
-      console.log(this.location_list);
-      this.index++;
-      this.DownloadFileAt(this.index);
-   
+      this.enqueue(ind.toString());
+      console.log("loc:"+this.location_list);
+     
+    
 
    /*   this.zip.unzip(this.loc,this.file.externalApplicationStorageDirectory+'Extracted/'+ind.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
     .then(async (result) => {
@@ -218,13 +219,42 @@ dequeue(){
     })
   }
 
-  CrashTest(){
- /*   this.i1=0;
+  DownloadFile5(ind){
+    var request: DownloadRequest = {
+      uri: this.list[ind],
+      title: 'CrashTest'+ind.toString(),
+      description: '',
+      mimeType: '',
+      visibleInDownloadsUi: true,
+      notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
+      destinationInExternalFilesDir: {
+          dirType: 'Downloads',
+          subPath: 'MyZip'+ind.toString()+'.zip'
+        }
+    };
+
+    this.downloader.download(request).then((location:string)=>{
+      this.loc=location;
+      this.f=0;
+      //added enqueue funtion
+      this.enqueue(this.loc);
+      console.log(this.location_list);
+      
+    },(err)=>{
+      alert(JSON.stringify(err));
+    })
+  }
+
+
+  async CrashTest(){
+    this.i1=0;
     this.i2=1; 
     this.i3=2;
-    this.i4=3;
-    this.i5=4;
+   // this.i4=3;
+   // this.i5=4;
+
     while(1){
+      this.f=1;
       if(this.i1<this.list.length)
       this.DownloadFileAt(this.i1);
       else
@@ -237,22 +267,13 @@ dequeue(){
       this.DownloadFileAt(this.i3);
       else
       break;
-      if(this.i4<this.list.length)
-      this.DownloadFileAt(this.i4);
-      else
-      break;
-      if(this.i5<this.list.length )
-      {
-        await this.DownloadFileAt(this.i5);
-        this.i1+=5; this.i2+=5; this.i3+=5; this.i4+=5; this.i5+=5;
-      }
-      else
-      break;
-
+      console.log("val:"+this.f.toString());
+      await new Promise(f => setTimeout(f,20000));
+      console.log("Next loop"+this.i1.toString());
+      this.i1+=3; this.i2+=3; this.i3+=3; 
+      //this.i4+=5; this.i5+=5;
     }
-       */ 
-    this.DownloadFileAt(this.index);
-    this.ExtractRead(); 
+    
   }
 
 }
@@ -313,7 +334,7 @@ export class HomePage {
         destinationInExternalFilesDir:{
           dirType:'Downloads',
           subPath:'My.zip'
-        }          
+  +      }          
       };
       this.downloader.download(request).then((location:string)=>{
         alert("File downloaded at :"+location);
