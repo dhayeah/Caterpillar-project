@@ -59,7 +59,7 @@ export class HomePage {
       console.log("Reading DB :"+data.rows.length)
       if(data.rows.length > 0) {
           for(var i = 0; i < data.rows.length; i++) {
-              console.log(data.rows.item(i).filename + ' : ' + data.rows.item(i).path)
+              console.log(data.rows.item(i).filename + ' : ' + data.rows.item(i).path +' : ' + data.rows.item(i).data)
           }
       }
       console.log("Read DB")
@@ -135,30 +135,33 @@ dequeue(){
 }
   
   list=[
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5',
-    'https://firebasestorage.googleapis.com/v0/b/downloader-31ec1.appspot.com/o/data%20structures.zip?alt=media&token=0bdbc66f-6f43-4c8d-8118-cd2f6ede52e5']
-
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7'
+  ]
   indi=0;
   async ExtractRead(){
-   
-    while(this.size()==0);
-
-      this.filelocation=this.dequeue();
-      console.log(this.filelocation);
+    console.log("size:"+(this.size()).toString());
+    if(this.indi>13){
+      return;
+    }
+    while(this.size()==0 ){
       
+    }
+      this.filelocation=this.dequeue();
+      console.log("dequed :"+this.filelocation);
+      await new Promise(f => setTimeout(f,2000)); 
         this.zip.unzip(this.filelocation,this.file.externalApplicationStorageDirectory+'Extracted/'+this.indi.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
         .then(async (result) => {
           if(result === 0){
@@ -173,10 +176,14 @@ dequeue(){
     
         }); 
       
-  } 
-  index=0;
-  DownloadFileAt(ind){
+  }
 
+  index=0;
+  async DownloadFileAt(ind){
+
+    if(ind>13){
+      return;
+    }
     var request: DownloadRequest = {
       uri: this.list[ind],
       title: 'CrashTest'+ind.toString(),
@@ -191,16 +198,18 @@ dequeue(){
     };
 
 
-    this.enqueue('MyZip'+ind.toString()+'.zip');
-    this.downloader.download(request).then((location:string)=>{
+    //this.enqueue("file:///storage/emulated/0/Android/data/io.ionic.starter/files/Downloads/"+'MyZip'+ind.toString()+'.zip');
+    this.downloader.download(request).then(async (location:string)=>{
       this.loc=location;
-      console.log(this.loc);
-      //added enqueue funtion
-      this.enqueue(ind.toString());
-      console.log("loc:"+this.location_list);
+    this.enqueue(this.loc);
+    if(ind==0){
+      this.ExtractRead();
+    }
+     console.log("loc:"+this.location_list);
+     this.index++;
+     await this.DownloadFileAt(this.index);
      
-    
-
+    // await new Promise(f => setTimeout(f,2000));
    /*   this.zip.unzip(this.loc,this.file.externalApplicationStorageDirectory+'Extracted/'+ind.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
     .then(async (result) => {
       if(result === 0){
@@ -247,13 +256,18 @@ dequeue(){
 
 
   async CrashTest(){
-    this.i1=0;
-    this.i2=1; 
-    this.i3=2;
+    this.index=0;
+    this.indi=0;
+    this.nextEnqueueIndex = 0;
+    this.lastDequeuedIndex = 0;
+    this.dequeued="";
+    this.location_list=[];
+    this.DownloadFileAt(0);
+   
    // this.i4=3;
    // this.i5=4;
 
-    while(1){
+ /*    while(1){
       this.f=1;
       if(this.i1<this.list.length)
       this.DownloadFileAt(this.i1);
@@ -268,114 +282,15 @@ dequeue(){
       else
       break;
       console.log("val:"+this.f.toString());
-      await new Promise(f => setTimeout(f,20000));
+      await new Promise(f => setTimeout(f,2000));
       console.log("Next loop"+this.i1.toString());
       this.i1+=3; this.i2+=3; this.i3+=3; 
+    //   this.ExtractRead(); 
       //this.i4+=5; this.i5+=5;
     }
-    
-  }
-
-}
-
-/*
-
-size(): number {
-  return this.nextEnqueueIndex - this.lastDequeuedIndex;
-}
-
-export class Queue<T>{
-  private data: { [index: number]: T } = Object.create(null);
-  private nextEnqueueIndex = 0;
-  private lastDequeuedIndex = 0;
-
-   Enqueues the item in O(1) 
-  enqueue(item: T): void {
-    this.data[this.nextEnqueueIndex] = item;
-    this.nextEnqueueIndex++;
-  }
-
   
-   * Dequeues the first inserted item in O(1)
-   * If there are no more items it returns `undefined`
-   
-  dequeue(): T | undefined {
-    if (this.lastDequeuedIndex !== this.nextEnqueueIndex) {
-      const dequeued = this.data[this.lastDequeuedIndex];
-      delete this.data[this.lastDequeuedIndex];
-      this.lastDequeuedIndex++;
-      return dequeued;
-    }
-  }
-}
-
-export class HomePage {
-   loc:any="";
-  constructor(private downloader:Downloader,public zip:Zip,public file:File) 
-  {
-    
-  }
-  ngOnInit()
-  {
-     
-  }
-  download()
-  {
-      var downloadurl="https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd";
-      
-      var request:DownloadRequest={
-        uri:downloadurl,
-        title:"Mydownload",
-        description:"ionic 4 downld test",
-        mimeType:"application/zip",
-        visibleInDownloadsUi:true,
-        notificationVisibility:NotificationVisibility.
-        VisibleNotifyCompleted,
-        destinationInExternalFilesDir:{
-          dirType:'Downloads',
-          subPath:'My.zip'
-  +      }          
-      };
-      this.downloader.download(request).then((location:string)=>{
-        alert("File downloaded at :"+location);
-        this.loc=location;
-        this.zip.unzip(this.loc,this.file.externalApplicationStorageDirectory+'Extracted/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
-      .then((result) => {
-        if(result === 0){
-          console.log('SUCCESS');
-          this.loc="Sucess";
-          this.file.listDir(this.file.externalApplicationStorageDirectory, 'Extracted').then(async (results) => {
-            console.log(results);
-             for (let f of results) {
-               if (f.isDirectory == true && f.name != '.' && f.name != '..') {
-                 console.log("This is a folder");
-               } else if (f.isFile == true) {
-                 console.log("This is a file");
-                 let name = f.name 
-                 console.log("file name: " + name);
-                  
-                  await Filesystem.readFile({
-                    path: this.file.externalApplicationStorageDirectory+'Extracted/'+name
-                  }).then(res => {
-                    let data=res.data.toString()
-                    if(name[0]=='R')
-                    console.log("file data:"+ atob(data))
-                  });
-                  
-               }
-             }
-          });
-        } 
-         
-        if(result === -1) console.log('FAILED');
-      });
-
-      },(err)=>{
-        alert(JSON.stringify(err));
-      })
-      
-      
-  }
+  } */
+  
 
 }
-*/
+}
