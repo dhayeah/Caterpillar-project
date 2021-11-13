@@ -7,6 +7,7 @@ import { range } from 'rxjs';
 import {SQLite,SQLiteObject} from '@ionic-native/sqlite/ngx'
 import { Extractor } from '@angular/compiler';
 import { StringDecoder } from 'string_decoder';
+import { promise } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-home',
@@ -103,17 +104,14 @@ export class HomePage {
          }
        }
     });
+   
   }
   
   nextEnqueueIndex = 0;
   lastDequeuedIndex = 0;
   dequeued="";
   location_list=[];
-  i1=0;
-  i2=1; 
-  i3=2;
-  i4=3;
-  i5=4;
+
   f=0;
   filelocation="";
 size(){
@@ -135,21 +133,20 @@ dequeue(){
 }
   
   list=[
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/cat1.zip?alt=media&token=cb93e5e3-5475-4533-969e-9717aa2b42cd',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7',
-    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/source10.zip?alt=media&token=6ca28506-b860-4eef-9c1c-6472f11828b7'
-  ]
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134',
+    'https://firebasestorage.googleapis.com/v0/b/cat-storage-48c6b.appspot.com/o/src.zip?alt=media&token=55513cbd-d1ec-4ab4-bb67-1583e7a0a134']
   indi=0;
   async ExtractRead(){
     console.log("size:"+(this.size()).toString());
@@ -157,11 +154,11 @@ dequeue(){
       return;
     }
     while(this.size()==0 ){
-      
+      await new Promise(f => setTimeout(f,2000)); 
     }
       this.filelocation=this.dequeue();
       console.log("dequed :"+this.filelocation);
-      await new Promise(f => setTimeout(f,2000)); 
+   //  await new Promise(f => setTimeout(f,2000)); 
         this.zip.unzip(this.filelocation,this.file.externalApplicationStorageDirectory+'Extracted/'+this.indi.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
         .then(async (result) => {
           if(result === 0){
@@ -197,32 +194,16 @@ dequeue(){
         }
     };
 
-
     //this.enqueue("file:///storage/emulated/0/Android/data/io.ionic.starter/files/Downloads/"+'MyZip'+ind.toString()+'.zip');
     this.downloader.download(request).then(async (location:string)=>{
-      this.loc=location;
+    this.loc=location;
     this.enqueue(this.loc);
     if(ind==0){
       this.ExtractRead();
     }
-     console.log("loc:"+this.location_list);
-     this.index++;
-     await this.DownloadFileAt(this.index);
-     
-    // await new Promise(f => setTimeout(f,2000));
-   /*   this.zip.unzip(this.loc,this.file.externalApplicationStorageDirectory+'Extracted/'+ind.toString()+'/', (progress) => console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%'))
-    .then(async (result) => {
-      if(result === 0){
-        console.log('SUCCESS');
-        this.loc="Success";
-        await this.readDir(this.file.externalApplicationStorageDirectory+'Extracted/',ind.toString());
-        this.index++;
-        this.DownloadFileAt(this.index);
-      } 
-      if(result === -1) console.log('FAILED');
-
-    });
-    */
+    console.log("loc:"+this.location_list);
+    this.index++;
+    await this.DownloadFileAt(this.index);
     },(err)=>{
       alert(JSON.stringify(err));
     })
@@ -255,42 +236,8 @@ dequeue(){
   }
 
 
-  async CrashTest(){
-    this.index=0;
-    this.indi=0;
-    this.nextEnqueueIndex = 0;
-    this.lastDequeuedIndex = 0;
-    this.dequeued="";
-    this.location_list=[];
+  CrashTest(){
     this.DownloadFileAt(0);
-   
-   // this.i4=3;
-   // this.i5=4;
-
- /*    while(1){
-      this.f=1;
-      if(this.i1<this.list.length)
-      this.DownloadFileAt(this.i1);
-      else
-      break;
-      if(this.i2<this.list.length)
-      this.DownloadFileAt(this.i2);
-      else
-      break;
-      if(this.i3<this.list.length)
-      this.DownloadFileAt(this.i3);
-      else
-      break;
-      console.log("val:"+this.f.toString());
-      await new Promise(f => setTimeout(f,2000));
-      console.log("Next loop"+this.i1.toString());
-      this.i1+=3; this.i2+=3; this.i3+=3; 
-    //   this.ExtractRead(); 
-      //this.i4+=5; this.i5+=5;
-    }
-  
-  } */
-  
-
-}
+   return 0;
+  }
 }
